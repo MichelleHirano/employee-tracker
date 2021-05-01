@@ -90,5 +90,27 @@ function viewAllDepartments(){
 };
 
 //add Employee
-
+function addEmployee() {
+    inquirer.prompt([{
+        type:"input",
+        name:"firstName",
+        message:"What is the employye's first name?"
+    },
+    {
+        type:"input",
+        name:"lastName",
+        message:"What is the employye's last name?"
+    },
+    {
+        type:"number",
+        name:"roleId",
+        message:"What is the employee's role ID?"
+    },
+    {
+        type:"number",
+        name:"managerId",
+        message:"What is the employee's manager's ID?"
+    },
+])
+}
 
