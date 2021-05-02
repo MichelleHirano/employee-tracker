@@ -120,3 +120,21 @@ function addEmployee() {
 });
 };
 
+
+//add Department
+function addDepartment(){
+    inquirer.prompt([{
+        type:"input",
+        name:"department",
+        message:"What deparment would you like to add?"
+    },
+]).then(function(res){
+    connection.query('INSERT INTO department (name) VALUES(?)', [res.department], function(err,data){
+        if (err) throw err;
+        console.table("Successful Input");
+        askQuestions();
+    })
+});
+};
+
+
