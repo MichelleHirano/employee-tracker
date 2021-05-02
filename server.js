@@ -58,7 +58,7 @@ function askQuestions () {
             updateEmployeeRole();
         }
 
-        if (choices === 'Add Roles'){
+        if (choices === 'Add Role'){
             addRole();
         }
 
@@ -77,7 +77,7 @@ function askQuestions () {
 function viewAllEmployees(){
     connection.query("SELECT * FROM employee", function (err,data){
         console.table(data);
-        askQuestions;
+        askQuestions();
     })
 };
 
@@ -85,7 +85,8 @@ function viewAllEmployees(){
 function viewAllDepartments(){
     connection.query("SELECT * FROM department", function (err,data){
         console.table(data);
-        askQuestions;
+        askQuestions()
+        ;
     })
 };
 
@@ -99,7 +100,7 @@ function addEmployee() {
     {
         type:"input",
         name:"lastName",
-        message:"What is the employye's last name?"
+        message:"What is the employee's last name?"
     },
     {
         type:"number",
@@ -109,7 +110,7 @@ function addEmployee() {
     {
         type:"number",
         name:"managerId",
-        message:"What is the employee's manager's ID?"
+        message:"What is the employee's manager's ID  ?"
     },
 ]).then(function(res){
     connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES(?,?,?,?)', [res.firstName, res.lastName, res.roleID, res.managerID], function(err,data){
@@ -138,17 +139,19 @@ function addDepartment(){
 };
 
 //add role
-function addRole() {
+function addRole(){
     inquirer.prompt([
         {
             message: "enter title:",
             type: "input",
             name: "title"
-        }, {
-            message: "enter salary:",
+        }, 
+        {
+            message: "enter salary (no commas):",
             type: "number",
             name: "salary"
-        }, {
+        }, 
+        {
             message: "enter department ID:",
             type: "number",
             name: "department_id"
