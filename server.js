@@ -68,7 +68,7 @@ function askQuestions () {
         }
 
         if (choices === 'Exit'){
-            connection.end;
+            connection.end();
         }
     });
 };
@@ -103,18 +103,18 @@ function addEmployee() {
         message:"What is the employee's last name?"
     },
     {
-        type:"number",
+        type:"input",
         name:"roleId",
-        message:"What is the employee's role ID?"
+        message:"What is the employee's role id?"
     },
     {
-        type:"number",
+        type:"input",
         name:"managerId",
         message:"What is the employee's manager's ID  ?"
     },
 ]).then(function(res){
-    connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES(?,?,?,?)', [res.firstName, res.lastName, res.roleID, res.managerID], function(err,data){
-        if (err) throw errl
+    connection.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES(?,?,?,?)`, [res.firstName, res.lastName, res.roleID, res.managerID], function(err,data){
+        if (err) throw err;
         console.table("Suncessful Input");
         askQuestions();
     });
@@ -130,7 +130,7 @@ function addDepartment(){
         message:"What deparment would you like to add?"
     },
 ]).then(function(res){
-    connection.query('INSERT INTO department (name) VALUES(?)', [res.department], function(err,data){
+    connection.query(`INSERT INTO department (department_name) VALUES(?)`, [res.department], function(err,data){
         if (err) throw err;
         console.table("Successful Input");
         askQuestions();
