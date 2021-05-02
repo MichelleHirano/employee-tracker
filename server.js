@@ -111,6 +111,12 @@ function addEmployee() {
         name:"managerId",
         message:"What is the employee's manager's ID?"
     },
-])
-}
+]).then(function(res){
+    connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES(?,?,?,?)', [res.firstName, res.lastName, res.roleID, res.managerID], function(err,data){
+        if (err) throw errl
+        console.table("Suncessful Input");
+        askQuestions();
+    });
+});
+};
 
